@@ -1,31 +1,30 @@
 # Vertex
 
-TODO: Write a gem description
+Takes as input the name of a CSV key and a list of CSV files sharing this key.
+Outputs to stdout a CSV file merging all values in files along the provided key.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Since this gem is not published, you can install locally:
 
-```ruby
-gem 'vertex'
-```
+    $ git clone http://github.com/sr-ix/vertex vertex
+    $ cd vertex
+    $ #rvm gemset create vertex #optional
+    $ #rvm gemset use vertex #optional
+    $ bundle install
+    $ rake install
 
-And then execute:
+To verify installation:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install vertex
+    $ which vertex
 
 ## Usage
 
-TODO: Write usage instructions here
+Check out the help text:
 
-## Contributing
+    $ vertex --help
 
-1. Fork it ( https://github.com/[my-github-username]/vertex/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Sample usage:
+
+    $ #assuming you are in the vertex repo directory
+    $ vertex --key product_id --files ./examples/products.csv ./examples/ratings.csv ./examples/colors.csv ./examples/flavors.csv > ./examples/all.csv
