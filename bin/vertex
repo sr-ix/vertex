@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'vertex'
+require 'trollop'
+
+opts = Trollop::options do
+  opt :key, "The key to merge CSV files on", :short=>'k', :type=>String, :default=>"product_id"
+  opt :files, "The list of files to merge", :short=>'f', :type=>:strings, :required=>true
+end
+
+key = opts[:key].intern
+files = opts[:files]
+csvmerge = Vertex::CSVMerge.new
+arr = Array.new
+
+files.each do |filename|
+   arr.push csvmerge.csv_to_a_of_h csvmerge.read_file(filename)
+end
+
+merged_hash = csvmerge.squash key, arr
+
+keys_list = csvmerge.get_unique_keys merged_hash
+
+rows = csvmerge.h_of_h_to_rows merged_hash, keys_list
+
+csvmerge.print_csv(rows)
