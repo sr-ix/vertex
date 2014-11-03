@@ -63,15 +63,6 @@ module Vertex
       rows.each do |row|
         puts CSV.generate_line row
       end
-
-      #csv_string = CSV.generate do |csv|
-      #  csv << rows[0]
-      #  csv << rows[1]
-      #  csv << rows[2]
-      #  csv << rows[3]
-      #  csv << rows[4]
-      #  csv << rows[5]
-      #end
     end
   end
 end
